@@ -11,11 +11,6 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// GET Route for homepage
-app.get('/', (req, res) =>
-    res.sendFile(path.join(__dirname, '/public/index.html'))
-);
-
 // GET Route for notes
 app.get('/notes', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/notes.html'))
@@ -37,11 +32,23 @@ app.post('/api/notes', (req, res) => {
 
     // Prepare a response object to send back to the client
     let response;
-    console.log(req.body);
+    //Check to see if there is anything in the request body
+    if(req.body && req.body.title && req.body.text){
+        response = {
+            status: 'success',
+            data: req.body
+        };
+        res.json(`Note ${req.body.title} has been added!`);
 
+
+    } else {
+        res.json('Request body must contain text and title');
+    }
+
+    console.log(response);
 })
 
-// GET Route for anything else
+// GET Route for homepage and anything else
 app.get('*', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/index.html'))
 );
