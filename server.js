@@ -68,14 +68,6 @@ app.post('/api/notes', (req, res) => {
         });
 
         res.json(`Note ${req.body.title} has been added!`);
-
-        const response = {
-            status: 'success',
-            data: newNote
-        };
-
-        console.log(response);
-        res.json(response);
     } else {
         res.json('Request body must contain text and title');
     }
