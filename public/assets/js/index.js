@@ -43,8 +43,7 @@ const saveNote = (note) =>
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("Successful POST request: " + data);
-      return data;
+      console.log("Successful POST request: " + JSON.stringify(data));
     })
     .catch((error) => {
       console.error(error);
