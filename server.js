@@ -1,6 +1,10 @@
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
-
+//helper method for generating unique ids
+const {
+    v4: uuidv4
+} = require('uuid');
 const notes = require('./db/db.json');
 
 const PORT = process.env.PORT || 3001;
@@ -9,7 +13,9 @@ const app = express();
 
 app.use(express.static('public'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({
+    extended: true
+}));
 
 // GET Route for notes
 app.get('/notes', (req, res) =>
@@ -30,22 +36,50 @@ app.post('/api/notes', (req, res) => {
     // Log that a POST request was received
     console.info(`${req.method} request received to add a note`);
 
-    // Prepare a response object to send back to the client
-    let response;
+    //destructuring for items in req.body
+    const {
+        title,
+        text
+    } = req.body;
+
     //Check to see if there is anything in the request body
-    if(req.body && req.body.title && req.body.text){
-        response = {
-            status: 'success',
-            data: req.body
+    if (req.body && req.body.title && req.body.text) {
+
+        //variable for the object to be saved
+        const newNote = {
+            title,
+            text,
+            id: uuidv4()
         };
+
+        //read the contents of db
+        fs.readFile('./db/db.json', 'utf-8', (err, data) => {
+            if (err) throw err;
+            else {
+                const parsedData = JSON.parse(data);
+                console.log(parsedData);
+                parsedData.push(newNote);
+
+                //write the string to db
+                fs.writeFile('./db/db.json', JSON.stringify(parsedData, null, 4), (err) => {
+                    err ? console.error(err) : console.log(`Note for ${newNote.title} has been written to JSON file`);
+                });
+            }
+        });
+
         res.json(`Note ${req.body.title} has been added!`);
 
+        const response = {
+            status: 'success',
+            data: newNote
+        };
 
+        console.log(response);
+        res.json(response);
     } else {
         res.json('Request body must contain text and title');
     }
 
-    console.log(response);
 })
 
 // GET Route for homepage and anything else
