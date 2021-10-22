@@ -40,14 +40,7 @@ const saveNote = (note) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("Successful POST request: " + JSON.stringify(data));
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  });
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {

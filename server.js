@@ -67,15 +67,15 @@ app.post('/api/notes', (req, res) => {
             }
         });
 
-        const response = {
-            status: 'success',
-            body: newNote,
-        };
+    //     const response = {
+    //         status: 'success',
+    //         body: newNote,
+    //     };
 
-        //console.log(response);
-        res.json(response);
-    } else {
-        res.json('Request body must contain text and title');
+    //     //console.log(response);
+    //     res.json(response);
+    // } else {
+    //     res.json('Request body must contain text and title');
     }
 
 });
