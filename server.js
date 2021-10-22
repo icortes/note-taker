@@ -52,32 +52,15 @@ app.post('/api/notes', (req, res) => {
             id: uuidv4()
         };
 
-        //read the contents of db
-        fs.readFile('./db/db.json', 'utf-8', (err, data) => {
-            if (err) throw err;
-            else {
-                const parsedData = JSON.parse(data);
-                //console.log(parsedData);
-                parsedData.push(newNote);
+        //console.log(parsedData);
+        notes.push(newNote);
 
-                //write the string to db
-                fs.writeFile('./db/db.json', JSON.stringify(parsedData, null, 4), (err) => {
-                    err ? console.error(err) : console.log(`Note for ${newNote.title} has been written to JSON file`);
-                });
-            }
+        //write the string to db
+        fs.writeFile('./db/db.json', JSON.stringify(notes, null, 4), (err) => {
+            err ? console.error(err) : console.log(`Note for ${newNote.title} has been written to JSON file`);
         });
-
-    //     const response = {
-    //         status: 'success',
-    //         body: newNote,
-    //     };
-
-    //     //console.log(response);
-    //     res.json(response);
-    // } else {
-    //     res.json('Request body must contain text and title');
     }
-
+    res.json(`Note ${title} has been written`);
 });
 
 // DELETE Route

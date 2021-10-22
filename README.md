@@ -1,47 +1,24 @@
 # Note Taker
 
-One paragraph of project description goes here.
+This is a note taking app that creates, saves, and deletes your notes. The app is using Express.js back end and will save and retrieve note data from a JSON file.
 
+![gif of app in action]()
 ## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them.
-
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development environment running.
-
-Say what the step will be:
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo.
-
+* Web browser and internet connection
 
 ## Built With
 
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-
+* [Node.js](https://nodejs.org/docs/latest-v15.x/api/)
+* [Express.js](https://expressjs.com/en/5x/api.html)
 ## Deployed Link
 
-* [See Live Site](#)
+* [See Live Site](https://evening-temple-99179.herokuapp.com/)
 
 
 ## Authors
@@ -56,8 +33,3 @@ End with an example of getting some data out of the system or using it for a lit
 
 This project is licensed under the MIT License 
 
-## Acknowledgments
-
-* Hat tip to anyone whose code, libraries, packages, or UI was used  / inspired from
-* Inspiration
-* etc
