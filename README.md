@@ -2,7 +2,8 @@
 
 This is a note taking app that creates, saves, and deletes your notes. The app is using Express.js back end and will save and retrieve note data from a JSON file.
 
-![gif of app in action]()
+
+![gif of app in action](./assets/images/gif.gif)
 ## Getting Started
 
 ### Prerequisites
