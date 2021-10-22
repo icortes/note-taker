@@ -78,7 +78,24 @@ app.post('/api/notes', (req, res) => {
         res.json('Request body must contain text and title');
     }
 
-})
+});
+
+// DELETE Route
+app.delete('/api/notes/:id', (req, res) => {
+    console.info(`${req.method} request received to delete note`);
+
+    const id = req.params.id;
+    notes.forEach((note, index) => {
+
+        if (note.id === id) {
+            notes.splice(index, 1);
+            fs.writeFile('./db/db.json', JSON.stringify(notes, null, 4), (err) => {
+                err ? console.error(err) : console.log(`Failed to write to file`);
+            });
+            res.json(`Note with id ${id} has been deleted`);
+        }
+    });
+});
 
 // GET Route for homepage and anything else
 app.get('*', (req, res) =>
